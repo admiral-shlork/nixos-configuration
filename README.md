@@ -34,6 +34,9 @@ git clone https://github.com/admiral-shlork/nixos-configuration.git
 sudo nixos-install --root /mnt  --flake .#argus
 ```
 ```bash
+sudo nixos-install --root /mnt  --flake .#futro
+```
+```bash
 sudo nixos-install --root /mnt  --flake .#tiny-slab-one
 ```
 ```bash
@@ -56,6 +59,9 @@ All commands are run from the root folder of the cloned repository.
 sudo nixos-rebuild switch --flake .#argus
 ```
 ```bash
+sudo nixos-rebuild switch --flake .#futro
+```
+```bash
 sudo nixos-rebuild switch --flake .#tiny-slab-one
 ```
 ```bash
@@ -66,6 +72,9 @@ sudo nixos-rebuild switch --flake .#tiny-slab-too
 
 ```bash
 sudo nixos-rebuild boot --flake .#argus
+```
+```bash
+sudo nixos-rebuild boot --flake .#futro
 ```
 ```bash
 sudo nixos-rebuild boot --flake .#tiny-slab-one
