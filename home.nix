@@ -1,10 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
+
+let
+  hostName = osConfig.networking.hostName;
+in
 
 {
-  imports = [
-    ./home/gnome.nix
-    ./home/starship.nix
-  ];
+  imports =
+    [ ./home/starship.nix ]
+    ++ lib.optionals (hostName == "slab") [ ./home/slab.nix ]
+    ++ lib.optionals (hostName == "fire-slab") [ ./home/fire-slab.nix ];
 
   # Home Manager configuration options go here
   home = {

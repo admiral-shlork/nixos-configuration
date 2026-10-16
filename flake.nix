@@ -29,6 +29,7 @@
     {
       nixosConfigurations = {
         argus = mkNixosConfiguration ./hosts/argus/configuration.nix;
+        fire-slab = mkNixosConfiguration ./hosts/fire-slab/configuration.nix;
         futro = mkNixosConfiguration ./hosts/futro/configuration.nix;
         slab = mkNixosConfiguration ./hosts/slab/configuration.nix;
         tiny-slab-one = mkNixosConfiguration ./hosts/tiny-slab-one/configuration.nix;
