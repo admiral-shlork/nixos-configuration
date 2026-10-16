@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./home/gnome.nix
     ./home/starship.nix
   ];
 
