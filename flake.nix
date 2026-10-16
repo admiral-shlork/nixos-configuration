@@ -2,61 +2,35 @@
   description = "whatever Flake";
 
   inputs = {
-    nixpkgs-tiny-slab-one.url = "github:NixOS/nixpkgs/nixos-26.05";
-    home-manager-tiny-slab-one.url = "github:nix-community/home-manager/release-26.05";
-    home-manager-tiny-slab-one.inputs.nixpkgs.follows = "nixpkgs-tiny-slab-one";
-
-    nixpkgs-tiny-slab-too.url = "github:NixOS/nixpkgs/nixos-26.05";
-    home-manager-tiny-slab-too.url = "github:nix-community/home-manager/release-26.05";
-    home-manager-tiny-slab-too.inputs.nixpkgs.follows = "nixpkgs-tiny-slab-too";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self,
-      nixpkgs-tiny-slab-one,
-      home-manager-tiny-slab-one,
-      nixpkgs-tiny-slab-too,
-      home-manager-tiny-slab-too,
+      nixpkgs,
+      home-manager,
       ...
     }:
     let
       system = "x86_64-linux";
+      mkNixosConfiguration = hostPath: nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          hostPath
+          home-manager.nixosModules.home-manager
+          {
+            _module.args.inputs = self.inputs;
+          }
+        ];
+      };
     in
     {
       nixosConfigurations = {
-        tiny-slab-one = nixpkgs-tiny-slab-one.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/tiny-slab-one/configuration.nix
-            home-manager-tiny-slab-one.nixosModules.home-manager {
-              home-manager = {
-                users.whatever = import ./home.nix;
-                useGlobalPkgs = true;
-                useUserPackages = true;
-              };
-            }
-            {
-              _module.args.inputs = self.inputs;
-            }
-          ];
-        };
-
-        tiny-slab-too = nixpkgs-tiny-slab-too.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/tiny-slab-too/configuration.nix
-            home-manager-tiny-slab-too.nixosModules.home-manager {
-              home-manager = {
-                users.whatever = import ./home.nix;
-                useGlobalPkgs = true;
-                useUserPackages = true;
-              };
-            }
-            {
-              _module.args.inputs = self.inputs;
-            }
-          ];
-        };
+        argus = mkNixosConfiguration ./hosts/argus/configuration.nix;
+        tiny-slab-one = mkNixosConfiguration ./hosts/tiny-slab-one/configuration.nix;
+        tiny-slab-too = mkNixosConfiguration ./hosts/tiny-slab-too/configuration.nix;
       };
     };
 }

@@ -31,6 +31,9 @@ git clone https://github.com/admiral-shlork/nixos-configuration.git
 5. To install the OS run the following command from the root folder of the cloned repository, choosing the target host:
 
 ```bash
+sudo nixos-install --root /mnt  --flake .#argus
+```
+```bash
 sudo nixos-install --root /mnt  --flake .#tiny-slab-one
 ```
 ```bash
@@ -50,6 +53,9 @@ All commands are run from the root folder of the cloned repository.
 **Switch** - apply the configuration and activate it immediately on the running system.
 
 ```bash
+sudo nixos-rebuild switch --flake .#argus
+```
+```bash
 sudo nixos-rebuild switch --flake .#tiny-slab-one
 ```
 ```bash
@@ -58,6 +64,9 @@ sudo nixos-rebuild switch --flake .#tiny-slab-too
 
 **Boot** - build the configuration and make it the default boot entry, applying it after the next reboot.
 
+```bash
+sudo nixos-rebuild boot --flake .#argus
+```
 ```bash
 sudo nixos-rebuild boot --flake .#tiny-slab-one
 ```

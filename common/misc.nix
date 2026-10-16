@@ -37,4 +37,10 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [ ];
   };
+
+  home-manager = {
+    users.whatever = import ./home.nix;
+    useGlobalPkgs = true;
+    useUserPackages = true;
+  };
 }
