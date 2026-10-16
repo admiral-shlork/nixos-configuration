@@ -30,7 +30,6 @@
             }
           ];
         };
-
         tiny-slab-too = lib.nixosSystem {
           inherit system;
           modules = [ 

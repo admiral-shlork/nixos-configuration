@@ -11,7 +11,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    btop # redundant placeholder
-  ];
+  environment.systemPackages = with pkgs; [ ];
 }

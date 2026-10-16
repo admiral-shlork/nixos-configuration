@@ -15,10 +15,10 @@
     };
   };
 
-  swapDevices = [{
-      device = "/swapfile";
-      size = 16 * 1024;
-    }];
+  # swapDevices = [{
+  #     device = "/swapfile";
+  #     size = 16 * 1024;
+  # }];
 
   fileSystems = {
     "/boot" = {

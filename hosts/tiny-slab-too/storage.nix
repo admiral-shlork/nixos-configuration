@@ -8,17 +8,17 @@
       systemd.enable = true;
     };
     kernelParams = [ "fbcon=rotate:3"];
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
   };
 
-  swapDevices = [{
-      device = "/swapfile";
-      size = 16 * 1024;
-    }];
+  # swapDevices = [{
+  #     device = "/swapfile";
+  #     size = 16 * 1024;
+  # }];
 
   fileSystems = {
     "/boot" = {

@@ -11,15 +11,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    btop
-    docker
-    git
-    home-manager
-    nh
-    python3
-    screen
-    vim
-    wget
-  ];
+  environment.systemPackages = with pkgs; [ ];
 }
