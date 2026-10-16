@@ -18,6 +18,5 @@
       ./networking.nix
       ./software.nix
       ./storage.nix
-      # ./kubernetes.nix
     ];
 }
