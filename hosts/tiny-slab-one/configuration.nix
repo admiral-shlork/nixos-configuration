@@ -1,5 +1,11 @@
 { ... }:
 
+#
+# Lenovo ThinkCentre Tiny M710q
+# i7-6700T @ 2.80GHz (4 cores)
+# 24GB RAM (16+8)
+#
+
 {
   imports =
     [
