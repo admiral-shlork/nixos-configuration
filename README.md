@@ -45,7 +45,10 @@ nixos-enter --root /mnt -c 'passwd whatever'
 
 ## Some useful Nix commands:
 
-- Apply configuration from a Flake and rebuild the OS
+All commands are run from the root folder of the cloned repository.
+
+**Switch** - apply the configuration and activate it immediately on the running system.
+
 ```bash
 sudo nixos-rebuild switch --flake .#tiny-slab-one
 ```
@@ -53,38 +56,36 @@ sudo nixos-rebuild switch --flake .#tiny-slab-one
 sudo nixos-rebuild switch --flake .#tiny-slab-too
 ```
 
+**Boot** - build the configuration and make it the default boot entry, applying it after the next reboot.
 
-- Remove older generations from the bootloader
+```bash
+sudo nixos-rebuild boot --flake .#tiny-slab-one
+```
+```bash
+sudo nixos-rebuild boot --flake .#tiny-slab-too
+```
+
+**Clean** - remove older generations from the bootloader. Use either of:
+
 ```bash
 nix-collect-garbage --delete-older-than 1d
 ```
 ```bash
-sudo nixos-rebuild boot --flake .#tiny-slab-one
-```
-```bash
-sudo nixos-rebuild boot --flake .#tiny-slab-too
-```
-or
-```bash
 nh clean all --keep 2
 ```
-```bash
-sudo nixos-rebuild boot --flake .#tiny-slab-one
-```
-```bash
-sudo nixos-rebuild boot --flake .#tiny-slab-too
-```
 
-- Update the flake.lock file and rebuild the system
+**Update** - update the `flake.lock` file:
+
 ```bash
 nix flake update
 ```
-```bash
-sudo nixos-rebuild switch --flake .#tiny-slab-one
-```
-```bash
-sudo nixos-rebuild switch --flake .#tiny-slab-too
-```
+
+### Usage
+
+- Apply the configuration now: run **Switch**.
+- Build the configuration and apply it on the next reboot: run **Boot**.
+- Remove older generations from the bootloader: run **Clean**, then apply the configuration with **Boot**.
+- Update the `flake.lock` file and rebuild the system: run **Update**, then apply the configuration with **Switch**.
 
 # Appendix
 
@@ -122,15 +123,10 @@ mkfs.ext4 /dev/mapper/some_logical_volume
 mkfs.vfat /dev/mapper/some_partition
 ```
 
-## Assorted useful commands
-
-- create a key file and attach it to a LUKS container
+- set a partition label
 ```bash
-dd if=/dev/urandom of=/root/some_luks_container.key bs=1024 count=4
+e2label /dev/mapper/some_logical_volume some_label
 ```
 ```bash
-chmod 0400 /root/some_luks_container.key
-```
-```bash
-cryptsetup luksAddKey /dev/sda1 /root/some_luks_container.key
+fatlabel /dev/sda1 some_label
 ```
