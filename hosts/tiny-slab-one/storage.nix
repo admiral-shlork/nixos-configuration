@@ -7,6 +7,7 @@
       kernelModules = [ "dm-snapshot" ];
       systemd.enable = true;
     };
+    kernelPackages = pkgs.linuxPackages_6_12;
     kernelParams = [ "fbcon=rotate:3"];
     kernelModules = [ "kvm-intel" ];
     loader = {
