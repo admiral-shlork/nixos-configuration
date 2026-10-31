@@ -8,8 +8,7 @@
       systemd.enable = true;
     };
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackages_6_12;
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = [ ];
     extraModprobeConfig = ''
       options snd_hda_intel power_save=0 power_save_controller=N
