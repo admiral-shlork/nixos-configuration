@@ -8,6 +8,7 @@
       systemd.enable = true;
     };
     kernelParams = [ "fbcon=rotate:3"];
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-intel" ];
     loader = {
       systemd-boot.enable = true;
