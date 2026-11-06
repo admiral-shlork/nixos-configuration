@@ -2,13 +2,12 @@
 
 {
   networking = {
-    hostName = "tiny-slab-tri";
+    hostName = "tiny-slab-beta";
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [ 9000 ];
+      allowedTCPPorts = [ 80 9000 ];
       allowedUDPPorts = [ ];
-      trustedInterfaces = [ ];
     };
   };
 }

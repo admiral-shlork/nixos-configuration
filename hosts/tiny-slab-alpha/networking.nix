@@ -2,7 +2,7 @@
 
 {
   networking = {
-    hostName = "tiny-slab-too";
+    hostName = "tiny-slab-alpha";
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall = {
