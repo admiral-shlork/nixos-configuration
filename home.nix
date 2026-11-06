@@ -8,7 +8,7 @@ in
   imports =
     [ ./home/starship.nix ]
     ++ lib.optionals (hostName == "slab") [ ./home/slab.nix ]
-    ++ lib.optionals (hostName == "fire-slab") [ ./home/fire-slab.nix ];
+    ++ lib.optionals (hostName == "tiny-slab-tri") [ ./home/tiny-slab-tri.nix ];
 
   # Home Manager configuration options go here
   home = {

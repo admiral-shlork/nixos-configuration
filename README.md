@@ -46,7 +46,7 @@ sudo nixos-install --root /mnt  --flake .#tiny-slab-too
 sudo nixos-install --root /mnt  --flake .#slab
 ```
 ```bash
-sudo nixos-install --root /mnt  --flake .#fire-slab
+sudo nixos-install --root /mnt  --flake .#tiny-slab-tri
 ```
 
 6. Set a password for the user:
@@ -77,7 +77,7 @@ sudo nixos-rebuild switch --flake .#tiny-slab-too
 sudo nixos-rebuild switch --flake .#slab
 ```
 ```bash
-sudo nixos-rebuild switch --flake .#fire-slab
+sudo nixos-rebuild switch --flake .#tiny-slab-tri
 ```
 
 **Boot** - build the configuration and make it the default boot entry, applying it after the next reboot.
@@ -98,7 +98,7 @@ sudo nixos-rebuild boot --flake .#tiny-slab-too
 sudo nixos-rebuild boot --flake .#slab
 ```
 ```bash
-sudo nixos-rebuild boot --flake .#fire-slab
+sudo nixos-rebuild boot --flake .#tiny-slab-tri
 ```
 
 **Clean** - remove older generations from the bootloader. Use either of:
