@@ -16,5 +16,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ adguardhome htop ];
+  environment.systemPackages = with pkgs; [ adguardhome htop kubectl ];
 }
