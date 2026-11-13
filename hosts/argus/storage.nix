@@ -16,10 +16,10 @@
     };
   };
 
-  # swapDevices = [{
-  #     device = "/swapfile";
-  #     size = 16 * 1024;
-  # }];
+  swapDevices = [{
+      device = "/home/whatever/mnt/internalmmc/swapfile";
+      size = 32 * 1024;
+  }];
 
   fileSystems = {
     "/boot" = {
