@@ -1,0 +1,117 @@
+discovery.docker "local" {
+	host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "containers" {
+	targets = []
+
+	rule {
+		source_labels = ["__meta_docker_container_name"]
+		regex         = "/(.*)"
+		target_label  = "container"
+	}
+
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+		target_label  = "service"
+	}
+
+	rule {
+		source_labels = ["__meta_docker_container_name"]
+		regex         = "/alloy"
+		action        = "drop"
+	}
+}
+
+loki.source.docker "local" {
+	host          = "unix:///var/run/docker.sock"
+	targets       = discovery.docker.local.targets
+	labels        = {host = sys.env("ALLOY_HOST"), job = "docker"}
+	relabel_rules = discovery.relabel.containers.rules
+	forward_to    = [loki.write.loki.receiver]
+}
+
+loki.relabel "journal" {
+	forward_to = []
+
+	rule {
+		source_labels = ["__journal_priority_keyword"]
+		target_label  = "level"
+	}
+}
+
+loki.relabel "journal_errors" {
+	forward_to = []
+
+	rule {
+		source_labels = ["__journal_priority"]
+		regex         = "[0-3]"
+		action        = "keep"
+	}
+
+	rule {
+		source_labels = ["__journal__systemd_unit"]
+		regex         = "docker.service"
+		action        = "drop"
+	}
+
+	rule {
+		source_labels = ["__journal__transport"]
+		regex         = "kernel"
+		action        = "drop"
+	}
+
+	rule {
+		source_labels = ["__journal_priority_keyword"]
+		target_label  = "level"
+	}
+
+	rule {
+		source_labels = ["__journal__systemd_unit"]
+		target_label  = "unit"
+	}
+}
+
+loki.source.journal "host_errors" {
+	max_age       = "1h"
+	labels        = {host = sys.env("ALLOY_HOST"), service = "journal"}
+	relabel_rules = loki.relabel.journal_errors.rules
+	forward_to    = [loki.write.loki.receiver]
+}
+
+loki.source.journal "kernel" {
+	matches       = "_TRANSPORT=kernel"
+	max_age       = "1h"
+	labels        = {host = sys.env("ALLOY_HOST"), service = "kernel"}
+	relabel_rules = loki.relabel.journal.rules
+	forward_to    = [loki.write.loki.receiver]
+}
+
+loki.relabel "journal_docker" {
+	forward_to = []
+
+	rule {
+		source_labels = ["__journal_container_name"]
+		regex         = ".+"
+		action        = "drop"
+	}
+
+	rule {
+		source_labels = ["__journal_priority_keyword"]
+		target_label  = "level"
+	}
+}
+
+loki.source.journal "docker" {
+	matches       = "_SYSTEMD_UNIT=docker.service"
+	max_age       = "1h"
+	labels        = {host = sys.env("ALLOY_HOST"), service = "docker"}
+	relabel_rules = loki.relabel.journal_docker.rules
+	forward_to    = [loki.write.loki.receiver]
+}
+
+loki.write "loki" {
+	endpoint {
+		url = "http://loki.argus/loki/api/v1/push"
+	}
+}

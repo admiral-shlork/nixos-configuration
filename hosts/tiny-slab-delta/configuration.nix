@@ -9,6 +9,8 @@
 {
   imports =
     [
+      ../../common/alloy.nix
+      ../../common/cadvisor.nix
       ../../common/misc.nix
       ../../common/prometheus.nix
       ../../common/software.nix
