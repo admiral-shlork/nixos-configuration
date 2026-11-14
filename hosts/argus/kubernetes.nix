@@ -5,6 +5,7 @@
 
   services.kubernetes = {
     roles = [ "master" ];
-    apiserver.advertiseAddress = "10.0.0.42";
+    apiserver.advertiseAddress = "10.0.0.110";
+    kubelet.extraOpts = "--fail-swap-on=false";
   };
 }

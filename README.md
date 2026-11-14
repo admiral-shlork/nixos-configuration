@@ -125,7 +125,9 @@ nix flake update
 
 # Kubernetes cluster
 
-`futro` is the master node. `slab`, `tiny-slab-alpha`, `tiny-slab-beta`, and `tiny-slab-delta` are worker nodes.
+`argus` is the master node. `slab`, `tiny-slab-alpha`, `tiny-slab-beta`, and `tiny-slab-delta` are worker nodes. The master runs the control plane only and does not schedule workload pods.
+
+Apply the configuration on `argus` first, then on the workers.
 
 After the master is running, get the join token:
 
