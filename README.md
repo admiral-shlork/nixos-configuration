@@ -123,6 +123,30 @@ nix flake update
 - Remove older generations from the bootloader: run **Clean**, then apply the configuration with **Boot**.
 - Update the `flake.lock` file and rebuild the system: run **Update**, then apply the configuration with **Switch**.
 
+# Kubernetes cluster
+
+`argus` is the master node. `slab`, `tiny-slab-alpha`, `tiny-slab-beta`, and `tiny-slab-delta` are worker nodes. The master runs the control plane only and does not schedule workload pods.
+
+Apply the configuration on `argus` first, then on the workers.
+
+After the master is running, get the join token:
+
+```bash
+sudo cat /var/lib/kubernetes/secrets/apitoken.secret
+```
+
+On each worker, join the cluster with that token:
+
+```bash
+echo 'TOKEN' | sudo nixos-kubernetes-node-join
+```
+
+On the master, verify the nodes:
+
+```bash
+sudo kubectl --kubeconfig /etc/kubernetes/cluster-admin.kubeconfig get nodes
+```
+
 # Appendix
 
 ## Partitioning cheat sheet
