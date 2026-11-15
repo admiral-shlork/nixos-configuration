@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     btop
+    cryptsetup
     docker
     git
     home-manager
