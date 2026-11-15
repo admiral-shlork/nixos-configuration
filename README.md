@@ -116,6 +116,8 @@ nix flake update
 
 # Kubernetes cluster
 
+See [K8S.md](K8S.md) for the complete cluster setup, node join, and `kubectl` access guide.
+
 `argus` is the master node. `slab`, `tiny-slab-alpha`, `tiny-slab-beta`, and `tiny-slab-delta` are worker nodes. The master runs the control plane only and does not schedule workload pods.
 
 Apply the configuration on `argus` first, then on the workers.
