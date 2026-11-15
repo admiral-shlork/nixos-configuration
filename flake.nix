@@ -33,6 +33,7 @@
         slab = mkNixosConfiguration ./hosts/slab/configuration.nix;
         tiny-slab-alpha = mkNixosConfiguration ./hosts/tiny-slab-alpha/configuration.nix;
         tiny-slab-beta = mkNixosConfiguration ./hosts/tiny-slab-beta/configuration.nix;
+        virtual-slab = mkNixosConfiguration ./hosts/virtual-slab/configuration.nix;
       };
     };
 }
