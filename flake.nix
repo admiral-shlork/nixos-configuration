@@ -30,7 +30,6 @@
       nixosConfigurations = {
         argus = mkNixosConfiguration ./hosts/argus/configuration.nix;
         tiny-slab-delta = mkNixosConfiguration ./hosts/tiny-slab-delta/configuration.nix;
-        futro = mkNixosConfiguration ./hosts/futro/configuration.nix;
         slab = mkNixosConfiguration ./hosts/slab/configuration.nix;
         tiny-slab-alpha = mkNixosConfiguration ./hosts/tiny-slab-alpha/configuration.nix;
         tiny-slab-beta = mkNixosConfiguration ./hosts/tiny-slab-beta/configuration.nix;
