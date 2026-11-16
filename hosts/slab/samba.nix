@@ -19,12 +19,6 @@
       };
 
       # Shares (previously under `shares`)
-      slab0 = {
-        path = "/home/whatever/mnt/slab0";
-        browseable = "yes";
-        "read only" = "no";
-        "valid users" = "whatever";
-      };
 
       slab1 = {
         path = "/home/whatever/mnt/slab1";
@@ -38,14 +32,6 @@
         browseable = "yes";
         "read only" = "no";
         "valid users" = "whatever";
-      };
-
-      eldrajw = {
-        path = "/home/whatever/mnt/slab0/eldrajw";
-        browseable = "yes";
-        "read only" = "no";
-        "valid users" = "whatever justyna";
-        "force user" = "whatever";
       };
 
       public = {
