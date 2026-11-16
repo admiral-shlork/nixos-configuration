@@ -11,6 +11,9 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    zfs = {
+      enabled = true;
+    };
   };
 
   fileSystems = {
