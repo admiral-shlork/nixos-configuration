@@ -15,22 +15,8 @@
         "map to guest" = "bad user";
       };
 
-      alpha = {
-        path = "/home/whatever/mnt/alpha";
-        browseable = "yes";
-        "read only" = "no";
-        "valid users" = "whatever";
-      };
-
-      beta = {
-        path = "/home/whatever/mnt/beta";
-        browseable = "yes";
-        "read only" = "no";
-        "valid users" = "whatever";
-      };
-
-      delta = {
-        path = "/home/whatever/mnt/delta";
+      zed = {
+        path = "/home/whatever/mnt/storage";
         browseable = "yes";
         "read only" = "no";
         "valid users" = "whatever";

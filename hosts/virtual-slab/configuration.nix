@@ -15,7 +15,7 @@
       ./hardware.nix
       ./misc.nix
       ./networking.nix
-      # ./samba.nix
+      ./samba.nix
       ./software.nix
       ./storage.nix
     ];
