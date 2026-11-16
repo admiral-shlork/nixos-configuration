@@ -27,5 +27,10 @@
       device = "/dev/disk/by-label/root";
       fsType = "ext4";
     };
+    "/home/whatever/mnt/storage" = {
+      device = "zed/storage";
+      fsType = "zfs";
+      options = [ "nofail" ];
+    };
   };
 }
