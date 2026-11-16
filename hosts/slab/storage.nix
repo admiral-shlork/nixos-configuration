@@ -16,6 +16,7 @@
       };
     };
     kernelModules = [ "kvm-intel" ];
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "kvm.enable_virt_at_load=0" "fbcon=rotate:3" ];
     extraModulePackages = [ ];
     loader = {
