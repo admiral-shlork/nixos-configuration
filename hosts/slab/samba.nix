@@ -34,6 +34,20 @@
         "valid users" = "whatever";
       };
 
+      pod1 = {
+        path = "/home/whatever/mnt/pod1";
+        browseable = "yes";
+        "read only" = "no";
+        "valid users" = "whatever";
+      };
+
+      pod2 = {
+        path = "/home/whatever/mnt/pod2";
+        browseable = "yes";
+        "read only" = "no";
+        "valid users" = "whatever";
+      };
+
       public = {
         path = "/mnt/Shares/Public";
         browseable = "yes";
