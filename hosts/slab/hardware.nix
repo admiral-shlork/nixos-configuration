@@ -16,10 +16,7 @@
         finegrained = false;
       };
     };
-    nvidia-container-toolkit = {
-      enable = true;
-      package = pkgs.nvidia-docker;
-    };
+    nvidia-container-toolkit.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
