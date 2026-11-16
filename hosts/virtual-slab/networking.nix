@@ -3,6 +3,7 @@
 {
   networking = {
     hostName = "virtual-slab";
+    hostId = "8434f22d";
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall = {

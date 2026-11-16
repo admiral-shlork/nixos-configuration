@@ -6,12 +6,16 @@
       availableKernelModules = [ "sd_mod" "sr_mod" ];
       systemd.enable = true;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
   };
+
+  services.zfs.autoScrub.enable = true;
 
   fileSystems = {
     "/boot" = {
