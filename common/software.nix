@@ -5,6 +5,7 @@
     cryptsetup
     docker
     git
+    ghostty.terminfo
     home-manager
     nh
     python3
